@@ -1,4 +1,3 @@
-// App.js - the "router". Registers every screen in one Stack Navigator.
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,21 +10,20 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    // NavigationContainer holds the navigation state for the whole app
     <NavigationContainer>
-      {/* The first Screen listed is the one shown at startup */}
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          name="RecipeList"
-          component={RecipeListScreen}
-          options={{ title: 'All Recipes' }}
-        />
-        <Stack.Screen
-          name="RecipeDetails"
-          component={RecipeDetailsScreen}
-          options={{ title: 'Recipe' }}
-        />
+      <Stack.Navigator
+        initialRouteName="Home"
+        // screenOptions applies the same header style to every screen
+        screenOptions={{
+          headerStyle: { backgroundColor: '#1f6f5c' },
+          headerTintColor: '#ffffff',
+          headerTitleStyle: { fontWeight: 'bold' },
+          contentStyle: { backgroundColor: '#f7f9f8' },
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Recipe Book' }} />
+        <Stack.Screen name="RecipeList" component={RecipeListScreen} options={{ title: 'All Recipes' }} />
+        <Stack.Screen name="RecipeDetails" component={RecipeDetailsScreen} options={{ title: 'Recipe' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
