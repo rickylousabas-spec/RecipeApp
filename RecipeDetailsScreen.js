@@ -1,6 +1,6 @@
 // RecipeDetailsScreen.js - Screen 3: reads the params and has custom buttons.
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 
 export default function RecipeDetailsScreen({ route, navigation }) {
   const { recipe } = route.params;
@@ -9,7 +9,9 @@ export default function RecipeDetailsScreen({ route, navigation }) {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.emoji}>{recipe.emoji}</Text>
       <Text style={styles.title}>{recipe.name}</Text>
-      <Text style={styles.meta}>{recipe.time} • Serves {recipe.servings}</Text>
+      <Text style={styles.meta}>
+        {recipe.time} • Serves {recipe.servings} • {recipe.difficulty}
+      </Text>
 
       <Text style={styles.label}>Description</Text>
       <Text style={styles.text}>{recipe.description}</Text>
@@ -17,6 +19,11 @@ export default function RecipeDetailsScreen({ route, navigation }) {
       <Text style={styles.label}>Ingredients</Text>
       {recipe.ingredients.map((item) => (
         <Text key={item} style={styles.text}>• {item}</Text>
+      ))}
+
+      <Text style={styles.label}>Steps</Text>
+      {recipe.steps.map((step, index) => (
+        <Text key={index} style={styles.text}>{index + 1}. {step}</Text>
       ))}
 
       {/* navigation.goBack() manually returns to the previous screen */}
