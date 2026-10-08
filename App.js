@@ -1,3 +1,4 @@
+// App.js - the "router". Registers every screen in one Stack Navigator.
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -23,7 +24,12 @@ export default function App() {
       >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Recipe Book' }} />
         <Stack.Screen name="RecipeList" component={RecipeListScreen} options={{ title: 'All Recipes' }} />
-        <Stack.Screen name="RecipeDetails" component={RecipeDetailsScreen} options={{ title: 'Recipe' }} />
+        <Stack.Screen
+          name="RecipeDetails"
+          component={RecipeDetailsScreen}
+          // options can be a function: the header title uses the recipe name from route.params
+          options={({ route }) => ({ title: route.params.recipe.name })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
