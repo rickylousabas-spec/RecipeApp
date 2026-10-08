@@ -14,6 +14,7 @@ export default function RecipeListScreen({ navigation }) {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.card}
+            // The 2nd argument of navigate() is the PARAMS object sent to the next screen
             onPress={() => navigation.navigate('RecipeDetails', { recipe: item })}
           >
             <Text style={styles.emoji}>{item.emoji}</Text>
