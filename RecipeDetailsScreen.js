@@ -1,9 +1,13 @@
 // RecipeDetailsScreen.js - Screen 3: reads the params and has custom buttons.
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 
+// `route.params` contains whatever object the previous screen passed in.
 export default function RecipeDetailsScreen({ route, navigation }) {
   const { recipe } = route.params;
+
+  // Simple local state: true when the user taps the favorite button
+  const [isFavorite, setIsFavorite] = useState(false);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -12,6 +16,16 @@ export default function RecipeDetailsScreen({ route, navigation }) {
       <Text style={styles.meta}>
         {recipe.time} • Serves {recipe.servings} • {recipe.difficulty}
       </Text>
+
+      {/* Toggles between saved / not saved */}
+      <TouchableOpacity
+        style={[styles.favButton, isFavorite && styles.favButtonActive]}
+        onPress={() => setIsFavorite(!isFavorite)}
+      >
+        <Text style={[styles.favText, isFavorite && styles.favTextActive]}>
+          {isFavorite ? '♥ Saved' : '♡ Save recipe'}
+        </Text>
+      </TouchableOpacity>
 
       <Text style={styles.label}>Description</Text>
       <Text style={styles.text}>{recipe.description}</Text>
@@ -43,7 +57,18 @@ const styles = StyleSheet.create({
   container: { padding: 24 },
   emoji: { fontSize: 56, textAlign: 'center' },
   title: { fontSize: 28, fontWeight: 'bold', textAlign: 'center', marginTop: 8, color: '#1d2b27' },
-  meta: { textAlign: 'center', color: '#5b6b66', marginTop: 4, marginBottom: 8 },
+  meta: { textAlign: 'center', color: '#5b6b66', marginTop: 4, marginBottom: 12 },
+  favButton: {
+    alignSelf: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#1f6f5c',
+  },
+  favButtonActive: { backgroundColor: '#1f6f5c' },
+  favText: { color: '#1f6f5c', fontWeight: '600' },
+  favTextActive: { color: '#fff' },
   label: { fontSize: 14, fontWeight: '600', color: '#1f6f5c', marginTop: 16, marginBottom: 4 },
   text: { fontSize: 16, color: '#1d2b27', lineHeight: 24 },
   button: { backgroundColor: '#1f6f5c', padding: 14, borderRadius: 10, alignItems: 'center', marginTop: 28 },
