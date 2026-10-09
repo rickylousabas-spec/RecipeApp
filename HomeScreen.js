@@ -1,33 +1,47 @@
-// HomeScreen.js - Screen 1: the landing page.
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { recipes } from './data';
-
-export default function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.emoji}>🍳</Text>
-      <Text style={styles.title}>Recipe Book</Text>
-      <Text style={styles.subtitle}>
-        {recipes.length} simple dishes for everyday cooking.
-      </Text>
-
-      {/* navigation.navigate('ScreenName') moves FORWARD to that screen */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('RecipeList')}
-      >
-        <Text style={styles.buttonText}>Browse Recipes</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 },
-  emoji: { fontSize: 64, marginBottom: 12 },
-  title: { fontSize: 32, fontWeight: 'bold', color: '#1d2b27' },
-  subtitle: { fontSize: 16, color: '#5b6b66', marginTop: 8, marginBottom: 32 },
-  button: { backgroundColor: '#1f6f5c', paddingVertical: 14, paddingHorizontal: 32, borderRadius: 10 },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
-});
+export const recipes = [
+  {
+    id: '1',
+    emoji: '🍗',
+    name: 'Chicken Adobo',
+    time: '45 min',
+    servings: 4,
+    difficulty: 'Easy',
+    description: 'Chicken simmered in soy sauce, vinegar, garlic, and bay leaves.',
+    ingredients: ['Chicken', 'Soy sauce', 'Vinegar', 'Garlic', 'Bay leaves', 'Peppercorns'],
+    steps: [
+      'Mix chicken, soy sauce, vinegar, garlic, and peppercorns in a pot.',
+      'Add bay leaves and bring to a boil.',
+      'Lower the heat and simmer for 30 minutes until tender.',
+    ],
+  },
+  {
+    id: '2',
+    emoji: '🍜',
+    name: 'Pancit Canton',
+    time: '30 min',
+    servings: 3,
+    difficulty: 'Medium',
+    description: 'Stir-fried noodles with vegetables and sliced meat.',
+    ingredients: ['Canton noodles', 'Cabbage', 'Carrots', 'Pork', 'Soy sauce', 'Garlic'],
+    steps: [
+      'Sauté garlic and pork until cooked.',
+      'Add carrots and cabbage and stir-fry for 3 minutes.',
+      'Add noodles and soy sauce, then toss until well mixed.',
+    ],
+  },
+  {
+    id: '3',
+    emoji: '🍌',
+    name: 'Banana Cue',
+    time: '15 min',
+    servings: 2,
+    difficulty: 'Easy',
+    description: 'Deep-fried saba bananas coated in caramelized brown sugar.',
+    ingredients: ['Saba bananas', 'Brown sugar', 'Cooking oil'],
+    steps: [
+      'Heat oil in a pan.',
+      'Fry the bananas and sprinkle brown sugar over them.',
+      'Cook until the sugar caramelizes, then skewer and serve.',
+    ],
+  },
+];
