@@ -16,7 +16,7 @@ export default function App() {
         initialRouteName="Home"
         // screenOptions applies the same header style to every screen
         screenOptions={{
-          headerStyle: { backgroundColor: '#1f6f5c' },
+          headerStyle: { backgroundColor: '#a05b07' },
           headerTintColor: '#ffffff',
           headerTitleStyle: { fontWeight: 'bold' },
           contentStyle: { backgroundColor: '#f7f9f8' },
