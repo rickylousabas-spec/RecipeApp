@@ -11,20 +11,24 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    // NavigationContainer holds the navigation state for the whole app
     <NavigationContainer>
-      {/* The first Screen listed is the one shown at startup */}
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen
-          name="RecipeList"
-          component={RecipeListScreen}
-          options={{ title: 'All Recipes' }}
-        />
+      <Stack.Navigator
+        initialRouteName="Home"
+        // screenOptions applies the same header style to every screen
+        screenOptions={{
+          headerStyle: { backgroundColor: '#a05b07' },
+          headerTintColor: '#ffffff',
+          headerTitleStyle: { fontWeight: 'bold' },
+          contentStyle: { backgroundColor: '#f7f9f8' },
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Recipe Book' }} />
+        <Stack.Screen name="RecipeList" component={RecipeListScreen} options={{ title: 'All Recipes' }} />
         <Stack.Screen
           name="RecipeDetails"
           component={RecipeDetailsScreen}
-          options={{ title: 'Recipe' }}
+          // options can be a function: the header title uses the recipe name from route.params
+          options={({ route }) => ({ title: route.params.recipe.name })}
         />
       </Stack.Navigator>
     </NavigationContainer>
